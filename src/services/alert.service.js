@@ -66,3 +66,4 @@ async function sendFailureAlert({ trackingId, error, contactEmail }) {
 module.exports = {
   sendFailureAlert,
 };
+
