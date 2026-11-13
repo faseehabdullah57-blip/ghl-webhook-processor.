@@ -1,0 +1,9 @@
+node_modules/
+coverage/
+logs/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+data/dlq_failed_events.json

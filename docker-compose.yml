@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  ghl-webhook-processor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ghl-webhook-processor
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    volumes:
+      - ./data:/usr/src/app/data
+      - ./logs:/usr/src/app/logs
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
